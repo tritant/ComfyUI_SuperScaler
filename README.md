@@ -5,6 +5,8 @@ An all-in-one, multi-pass generative upscaling and post-processing node designed
 This node replaces a complex chain of 10+ nodes, combining a latent refine pass, two generative tiled upscale passes, and a final Post-FX (Sharpen & Grain) stage into a single, convenient, and collapsible unit.
 
 -----
+<img width="2556" height="1217" alt="Capture d&#39;écran 2025-11-02 072618" src="https://github.com/user-attachments/assets/09dc363d-e478-4435-a4b4-3730b9127ca3" />
+
 
 ## 🌟 Features
 

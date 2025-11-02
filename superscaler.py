@@ -114,7 +114,7 @@ class SuperScaler:
         # 2. Upscaler le latent
         b, c, h, w = latent.shape
         new_h, new_w = int(h * upscale_by), int(w * upscale_by)
-        latent_upscaled = torch.nn.functional.interpolate(latent, size=(new_h, new_w), mode="bilinear", align_corners=False)
+        latent_upscaled = torch.nn.functional.interpolate(latent, size=(new_h, new_w), mode="nearest")
 
         # 3. Appeler le KSampler
         refined_latent = nodes.common_ksampler(

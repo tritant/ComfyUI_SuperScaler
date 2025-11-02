@@ -47,11 +47,11 @@ class SuperScaler:
                 "positive_pass_1": ("CONDITIONING",),
                 "negative_pass_1": ("CONDITIONING",),
                 "latent_upscale_by": ("FLOAT", {"default": 1.1, "min": 1.0, "max": 4.0, "step": 0.1}),
-                "latent_denoise": ("FLOAT", {"default": 0.4, "min": 0.0, "max": 1.0, "step": 0.01}),
+                "latent_denoise": ("FLOAT", {"default": 0.2, "min": 0.0, "max": 1.0, "step": 0.01}),
                 "latent_sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
                 "latent_scheduler": (comfy.samplers.KSampler.SCHEDULERS,),
-                "latent_steps": ("INT", {"default": 4, "min": 1, "max": 1000}),
-                "latent_cfg": ("FLOAT", {"default": 3.5, "min": 0.0, "max": 100.0}),
+                "latent_steps": ("INT", {"default": 6, "min": 1, "max": 1000}),
+                "latent_cfg": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 100.0}),
                                                 
                 # --- SECTION 2: TILED GENERATIVE UPSCALE (PASS 2) --- (MODIFIÉ: _2 ajouté)
                 "enable_tiled_pass_2": ("BOOLEAN", {"default": True}),
@@ -85,14 +85,14 @@ class SuperScaler:
                 
                 # --- SECTION 4: POST-PROCESSING FX ---
                 "enable_sharpen": ("BOOLEAN", {"default": False}),
-                "sharpen_amount": ("FLOAT", {"default": 1.15, "min": 0.0, "max": 5.0, "step": 0.05}),
+                "sharpen_amount": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 5.0, "step": 0.05}),
                 "sharpen_radius": ("INT", {"default": 1, "min": 1, "max": 20, "step": 1}),
                 "enable_grain": ("BOOLEAN", {"default": False}),
                 "grain_type": (["poisson", "gaussian", "perlin"], {"default": "poisson"}),
-                "grain_intensity": ("FLOAT", {"default": 0.022, "min": 0.001, "max": 1.0, "step": 0.001}),
-                "grain_size": ("FLOAT", {"default": 1.5, "min": 1.0, "max": 16.0, "step": 0.1}),
-                "saturation_mix": ("FLOAT", {"default": 0.22, "min": 0.0, "max": 1.0, "step": 0.01}),
-                "adaptive_grain": ("FLOAT", {"default": 0.30, "min": 0.0, "max": 2.0, "step": 0.01}),
+                "grain_intensity": ("FLOAT", {"default": 0.018, "min": 0.001, "max": 1.0, "step": 0.001}),
+                "grain_size": ("FLOAT", {"default": 1.3, "min": 1.0, "max": 16.0, "step": 0.1}),
+                "saturation_mix": ("FLOAT", {"default": 0.20, "min": 0.0, "max": 1.0, "step": 0.01}),
+                "adaptive_grain": ("FLOAT", {"default": 0.15, "min": 0.0, "max": 2.0, "step": 0.01}),
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
             }
         }

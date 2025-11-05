@@ -96,41 +96,46 @@ function rebuildWidgets(node) {
         }
     }
     
-    // --- AJOUT : AFFICHER LA SEED GLOBALE ---
-    const globalSeedWidget = node.allPythonWidgets.find(w => w.name === "seed");
-    
-    if (globalSeedWidget && !allManagedWidgetNames.has("seed")) {
-        // Ajouter le spacer pour la seed
-        node.widgets.push({ 
-            name: "separator_spacer_global_seed",
-            type: "CUSTOM_SPACER", 
-            draw: (ctx, node, width, y) => {
-                const title = "Global Seed";
-                const rectHeight = 20, marginY = 5, x_padding = 10;
-                ctx.fillStyle = "#272";
-                ctx.fillRect(x_padding, y + marginY, width - (x_padding * 2), rectHeight);
-                ctx.fillStyle = "#CCC";
-                ctx.font = "bold 12px Arial";
-                ctx.textAlign = "center";
-                const textY = y + marginY + rectHeight / 2 + 4;
-                ctx.fillText(title, width / 2, textY); 
-            }, 
-            computeSize: () => [0, 30]
-        });
-    }
-
-    // On ajoute tous les widgets qui n'étaient pas gérés
-    // (Cela inclut la seed ET son menu compagnon)
-    for (const widget of node.allPythonWidgets) {
-        if (!allManagedWidgetNames.has(widget.name)) {
-            // Applique la valeur depuis notre "source de vérité"
-            if (node.properties.hasOwnProperty(widget.name)) {
-                widget.value = node.properties[widget.name];
+        // --- AJOUT : AFFICHER LES WIDGETS NON GÉRÉS (SEED, BLEND, ETC.) ---
+        
+        // 1. Trouver tous les widgets non gérés
+        const unmanagedWidgets = [];
+        for (const widget of node.allPythonWidgets) {
+            if (!allManagedWidgetNames.has(widget.name)) {
+                unmanagedWidgets.push(widget);
             }
-            node.widgets.push(widget);
         }
-    }
-    // --- FIN DE L'AJOUT ---
+
+        // 2. S'il y en a, ajouter un titre et les widgets
+        if (unmanagedWidgets.length > 0) {
+            // Ajouter un spacer "Final Settings"
+            node.widgets.push({ 
+                name: "separator_spacer_final_settings",
+                type: "CUSTOM_SPACER", 
+                draw: (ctx, node, width, y) => {
+                    const title = "Final Settings"; // Nouveau titre
+                    const rectHeight = 20, marginY = 5, x_padding = 10;
+                    ctx.fillStyle = "#272";
+                    ctx.fillRect(x_padding, y + marginY, width - (x_padding * 2), rectHeight);
+                    ctx.fillStyle = "#CCC";
+                    ctx.font = "bold 12px Arial";
+                    ctx.textAlign = "center";
+                    const textY = y + marginY + rectHeight / 2 + 4;
+                    ctx.fillText(title, width / 2, textY); 
+                }, 
+                computeSize: () => [0, 30]
+            });
+            
+            // 3. Ajouter tous les widgets non gérés (seed, compagnon, et mask_blend_weight)
+            for (const widget of unmanagedWidgets) {
+                // Applique la valeur depuis notre "source de vérité"
+                if (node.properties.hasOwnProperty(widget.name)) {
+                    widget.value = node.properties[widget.name];
+                }
+                node.widgets.push(widget);
+            }
+        }
+        // --- FIN DE L'AJOUT ---
     
     // 3. Force le redessinage
     const newComputedSize = node.computeSize();

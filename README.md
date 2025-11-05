@@ -7,6 +7,20 @@ This node replaces a complex chain of 10+ nodes, combining a latent refine pass,
 -----
 <img width="2556" height="1217" alt="Capture d&#39;écran 2025-11-02 072618" src="https://github.com/user-attachments/assets/09dc363d-e478-4435-a4b4-3730b9127ca3" />
 
+Here's a short text describing the new feature, perfect for your README:
+
+---
+
+### 🌟 New Feature: Masked Final Blending
+
+This node now includes an optional `mask_in` input and a `mask_blend_weight` slider under **"Final Settings"**.
+
+This powerful feature allows you to protect specific areas of your image (like skies or smooth surfaces) from the entire generative and post-processing pipeline, preventing unwanted noise or artifacts in those regions.
+
+The `mask_blend_weight` slider controls the "cleanliness" of the protected areas.
+* At **1.0** (default), the protected area is 100% replaced by the clean upscale.
+* At **0.5**, the protected area is a 50/50 mix of the clean and processed versions.
+* At **0.0**, the mask has no effect.
 
 ## 🌟 Features
 

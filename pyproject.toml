@@ -1,7 +1,7 @@
 [project]
 name = "ComfyUI-SuperScaler"
 description = "An all-in-one, multi-pass generative upscaling and post-processing node designed to simplify complex workflows and add a professional finish to your images."
-version = "1.0.4"
+version = "1.1.0"
 license = { file = "LICENSE.txt" }
 
 [project.urls]
@@ -11,6 +11,7 @@ Repository = "https://github.com/tritant/ComfyUI_SuperScaler"
 PublisherId = "tritant"
 DisplayName = "SuperScaler"
 Icon = ""
+
 
 
 

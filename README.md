@@ -7,8 +7,6 @@ This node replaces a complex chain of 10+ nodes, combining a latent refine pass,
 -----
 <img width="2556" height="1217" alt="Capture d&#39;écran 2025-11-02 072618" src="https://github.com/user-attachments/assets/09dc363d-e478-4435-a4b4-3730b9127ca3" />
 
-Here's a short text describing the new feature, perfect for your README:
-
 ---
 
 ### 🌟 New Feature: Masked Final Blending

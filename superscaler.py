@@ -212,7 +212,14 @@ class SuperScaler:
                     denoise=denoise
                 )[0]
                 
-                tile_refined = vae.decode(tile_refined_latent["samples"]) # Sortie en NHWC
+                tile_refined = vae.decode(tile_refined_latent["samples"]) # Sortie en NHWC, mais avec 5 dimensions
+                    
+                    # --- CORRECTION V71: Nettoyage dimensionnel pour les modèles 5D (Qwen) ---
+                    # 1. Squeeze pour retirer les dimensions de taille 1 indésirables (e.g., T=1)
+                if tile_refined.dim() > 4:
+                     tile_refined = tile_refined.squeeze(1) # Tente de retirer la dimension T
+                         
+                    # 2. Permute vers NCHW (pour les calculs suivants) ET move to GPU
                 tile_refined = tile_refined.permute(0, 3, 1, 2).to(device) # NHWC -> NCHW ET move to GPU
 
                 # 5. Appliquer le masque de fondu et ré-assembler
